@@ -4,7 +4,10 @@ class MainHeader extends Component {
   render() {
     return (
       <div className="mainHeader">
-        <h1>List.me</h1>
+        <h1>
+          <b>List </b>
+          <span className="textAlt">hub</span>
+        </h1>
       </div>
     );
   }

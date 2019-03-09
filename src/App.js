@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
-import './App.css';
+//import './App.css';
+import './main.scss';
 import TodoList from './TodoList';
 import TodoItems from './TodoItems';
 import MainHeader from './Header.js';
+import FlipMove from 'react-flip-move';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       items: [],
-      currentItem: {text: '', key: ''},
+      currentItem: {text: '', key: '', completed: ''},
     };
+    this.markComplete = this.markComplete.bind(this);
   }
 
   handleInput = e => {
     const itemText = e.target.value;
-    const currentItem = {text: itemText, key: Date.now()};
+    const currentItem = {text: itemText, key: Date.now(), completed: false};
     this.setState({
       currentItem,
     });
@@ -29,7 +32,7 @@ class App extends Component {
       const items = [...this.state.items, newItem];
       this.setState({
         items: items,
-        currentItem: {text: '', key: ''},
+        currentItem: {text: '', key: '', completed: ''},
       });
     }
   };
@@ -45,18 +48,37 @@ class App extends Component {
 
   inputElement = React.createRef();
 
+  markComplete = key => {
+    const markedItems = this.state.items.map(items => {
+      if (items.key === key) {
+        items.completed = !items.completed;
+      }
+      return items;
+    });
+    const items = [...this.state.items];
+    this.setState({items});
+  };
+
   render() {
     return (
       <div className="App">
-        <MainHeader />
-        <TodoList
-          addItem={this.addItem}
-          inputElement={this.inputElement}
-          handleInput={this.handleInput}
-          currentItem={this.state.currentItem}
-        />
-        <div className="itemContainer">
-          <TodoItems entries={this.state.items} deleteItem={this.deleteItem} />
+        <div className="AppContainer">
+          <MainHeader />
+          <TodoList
+            addItem={this.addItem}
+            inputElement={this.inputElement}
+            handleInput={this.handleInput}
+            currentItem={this.state.currentItem}
+          />
+          <FlipMove
+            className="itemContainer"
+            style={{order: this.state.items.completed ? '99' : ''}}>
+            <TodoItems
+              entries={this.state.items}
+              deleteItem={this.deleteItem}
+              markComplete={this.markComplete}
+            />
+          </FlipMove>
         </div>
       </div>
     );

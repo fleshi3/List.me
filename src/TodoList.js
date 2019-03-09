@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 
 class TodoList extends Component {
   componentDidUpdate() {
@@ -10,12 +12,14 @@ class TodoList extends Component {
       <div className="todoListMain">
         <div className="header">
           <form onSubmit={this.props.addItem} className="TodoList">
-                  <input placeholder="task"
+                  <input placeholder="add todo item"
                           ref={this.props.inputElement}
                           value={this.props.currentItem.text}
                           onChange={this.props.handleInput}
                   />
-            <button type="submit">Add</button>
+                  <button type="submit">
+                        <FontAwesomeIcon icon={faPlus} size="xs" className="faPlus" />
+                  </button>
           </form>
         </div>
       </div>

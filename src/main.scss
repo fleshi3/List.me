@@ -1,0 +1,165 @@
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import '~pretty-checkbox/src/scss/extras/animation';
+/* REQUIRED */
+@import "~pretty-checkbox/src/scss/variables";
+@import "~pretty-checkbox/src/scss/core";
+* {
+  text-align: center;
+}
+
+@mixin easeOut {
+        transition: all 0.5s ease-out;
+}
+
+.App {
+  display: block;
+  margin-top: 0;
+  height: 100vh;
+  background: black;
+}
+
+.AppContainer {
+  position: fixed;
+  width: 400px;
+  padding: 2rem;
+  
+}
+
+.mainHeader {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  background: #282828;
+  color: white;
+  top: 0;
+  height: 10vh;
+  padding: 1rem 0;
+}
+
+.todoListMain {
+  display: flex;
+  flex-flow: row nowrap;
+  background: #282828;
+  justify-content: flex-start;
+  height: 3rem;
+  form {
+    transform: translate3d(5px, 0, 0);
+    padding: 1rem;
+    input {
+      width: 300px;
+      background: #353535;
+      color: #fff;
+      border: lighten(#353535, 10) 1px solid;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      font-size: 12px;
+      text-align: left;
+      padding-left: 5px;
+      &::placeholder {
+        color: grey;
+        text-align: left;
+        direction: rtl;
+      }
+    }
+    button {
+      cursor: pointer;
+      background: orange;
+      border: lighten(#353535, 10) 1px solid;
+      border-left:none;
+      border-radius: 3px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      color: black;
+      font-size: 12px;
+      margin-left: -2px;
+      .faPlus {
+                padding: 0 1rem;      
+      }
+      &:hover {
+              animation: pulse 1s ease-out;
+      }
+    }
+  }
+}
+
+.itemContainer {
+  color: white;
+  display: flex;
+  flex-flow: column nowrap;
+  ul {
+    //border: #282828 1px solid;
+    display: flex;
+    flex-flow:  column nowrap;
+    margin: 0;
+    padding-left: 0;
+    font-size: 0;
+  }
+  li {
+    list-style: none;
+    font-size: 16px;
+    //font-weight: 600;
+    text-align: left;
+    width: 100%;
+    padding: 15px 0;
+    padding-left: 1rem;
+    //border-bottom: #282828 1px solid;
+    //border-top: #282828 1px solid;
+    //&:nth-child(odd) {
+      //background: #121212;
+    //}
+    //&:nth-child(even) {
+      //background: lighten(#121212, 2);
+    //}
+  }
+}
+
+.liContainer {
+        display: flex;
+        flex-flow: row nowrap;
+        border-bottom: #282828 1px solid;
+        background: lighten(#121212, 2);
+        @include easeOut();
+        .checkboxContainer {
+                padding-left: 1rem;
+                .pretty {
+                        transform: translate3d(0,110%,0);
+                }
+        }
+        .dotContainer {
+                width: auto;
+                padding-left: 1rem;
+                .faDotCircle {
+                        color: orange;
+                        font-size: 10px;
+                        transform:  translate3d(0,210%, 0);
+                        @include easeOut();
+                }
+        }
+        &:hover {
+                li,
+                .dotContainer,
+                .checkboxContainer {
+                        //background: darken(#121212, 2);
+                        @include easeOut();
+                }
+        }
+}
+
+.pretty {
+        font-size: 16px;
+        line-height: 1;
+}
+
+.textAlt {
+        background: orange;
+        color: #282828;
+        border: none;
+        border-radius: 10%;
+        padding: 0 3px;
+}
+
+.FontAwesome {
+        font-size: 16px;
+}
+
+
