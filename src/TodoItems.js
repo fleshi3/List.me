@@ -12,38 +12,36 @@ const check = (
     />
   </svg>
 );
+// Stagger Delay nibba
 
 class TodoItems extends Component {
   createTasks = (item, index) => {
     return (
-            <FlipMove 
-                    style={{order: item.completed ? '99' : ''}}
-                    key={item.key}
-            >
+      <FlipMove  key={item.key}>
         <div
           className="liContainer"
+          key={item.key}
           style={{
             background: item.completed ? '#121212' : '',
-                  order: item.completed ? '99' : ''
+            order: item.completed ? '99' : '',
           }}>
-          <div className="dotContainer" key={item.key}>
+          <li
+                  //key={item.key}
+            //onClick={() => this.props.deleteItem(item.key)}
+            style={{
+              textDecoration: item.completed ? 'line-through' : 'none',
+              color: item.completed ? '#353535' : '',
+                    order: item.completed ? '99' : ''
+            }}>
             <FontAwesomeIcon
               icon={faDotCircle}
               size="xs"
               className="faDotCircle"
               style={{color: item.completed ? '#353535' : ''}}
             />
-          </div>
-          <li
-            key={item.key}
-            onClick={() => this.props.deleteItem(item.key)}
-            style={{
-              textDecoration: item.completed ? 'line-through' : 'none',
-              color: item.completed ? '#353535' : '',
-            }}>
-            {item.text}
-          </li>
-          <div className="checkboxContainer" key={item.key}>
+            <div className="itemText">
+                    {item.text}
+            </div>
             <div className="pretty p-svg p-curve p-thick p-tada">
               <input
                 type="checkbox"
@@ -55,7 +53,7 @@ class TodoItems extends Component {
                 <label />
               </div>
             </div>
-          </div>
+          </li>
         </div>
       </FlipMove>
     );
@@ -68,7 +66,9 @@ class TodoItems extends Component {
     return (
       <div>
         <ul className="theList">
-          <FlipMove staggerDelayBy={200} key={this.entries}>{listItems}</FlipMove>
+          <FlipMove staggerDelayBy={200} className="flexFix" >
+            {listItems}
+          </FlipMove>
         </ul>
       </div>
     );

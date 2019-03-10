@@ -4,6 +4,7 @@ import './main.scss';
 import TodoList from './TodoList';
 import TodoItems from './TodoItems';
 import MainHeader from './Header.js';
+import DeleteButton from './DeleteButton';
 import FlipMove from 'react-flip-move';
 
 class App extends Component {
@@ -59,10 +60,20 @@ class App extends Component {
     this.setState({items});
   };
 
+  deleteMarked = items => {
+    const filteredItems = this.state.items.filter(item => {
+      return item.completed !== true;
+    });
+    this.setState({
+      items: filteredItems,
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <div className="AppContainer">
+          <DeleteButton deleteMarked={this.deleteMarked} />
           <MainHeader />
           <TodoList
             addItem={this.addItem}
@@ -72,6 +83,7 @@ class App extends Component {
           />
           <FlipMove
             className="itemContainer"
+            key={this.state.items.key}
             style={{order: this.state.items.completed ? '99' : ''}}>
             <TodoItems
               entries={this.state.items}
