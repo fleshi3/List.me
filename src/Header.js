@@ -5,8 +5,8 @@ class MainHeader extends Component {
     return (
       <div className="mainHeader">
         <h1>
-          <b>List </b>
-          <span className="textAlt">hub</span>
+                <span className='textMain'>list</span>
+          <span className="textAlt">me</span>
         </h1>
       </div>
     );

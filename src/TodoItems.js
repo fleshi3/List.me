@@ -17,7 +17,7 @@ const check = (
 class TodoItems extends Component {
   createTasks = (item, index) => {
     return (
-      <FlipMove  key={item.key}>
+      <FlipMove key={item.key} maintainContainerHeight="true">
         <div
           className="liContainer"
           key={item.key}
@@ -26,12 +26,10 @@ class TodoItems extends Component {
             order: item.completed ? '99' : '',
           }}>
           <li
-                  //key={item.key}
-            //onClick={() => this.props.deleteItem(item.key)}
             style={{
-              textDecoration: item.completed ? 'line-through' : 'none',
-              color: item.completed ? '#353535' : '',
-                    order: item.completed ? '99' : ''
+              color: item.completed ? '#689d6a' : '',
+              fontWeight: item.completed ? '600' : '',
+              order: item.completed ? '99' : '',
             }}>
             <FontAwesomeIcon
               icon={faDotCircle}
@@ -39,9 +37,7 @@ class TodoItems extends Component {
               className="faDotCircle"
               style={{color: item.completed ? '#353535' : ''}}
             />
-            <div className="itemText">
-                    {item.text}
-            </div>
+            <div className="itemText">{item.text}</div>
             <div className="pretty p-svg p-curve p-thick p-tada">
               <input
                 type="checkbox"
@@ -66,7 +62,10 @@ class TodoItems extends Component {
     return (
       <div>
         <ul className="theList">
-          <FlipMove staggerDelayBy={200} className="flexFix" >
+          <FlipMove
+            staggerDelayBy={200}
+            className="flexFix"
+            maintainContainerHeight="true">
             {listItems}
           </FlipMove>
         </ul>

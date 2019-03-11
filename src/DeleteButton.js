@@ -4,10 +4,8 @@ import './main.scss';
 class DeleteButton extends Component {
   render() {
     return (
-      <div>
-        <button type="submit" className="DeleteButton" onClick={this.props.deleteMarked}>
-          X
-        </button>
+      <div className="navBar">
+        <div className="navLinks">add | filter | about | github</div>
       </div>
     );
   }
